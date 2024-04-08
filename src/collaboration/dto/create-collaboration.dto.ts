@@ -1,0 +1,27 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
+
+export class CreateCollaborationDto {
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  name: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  description: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsBoolean()
+  isActive: boolean;
+
+  // Add the image field
+  @ApiProperty({
+    type: 'string',
+    format: 'binary',
+    description: 'Select a file to upload', // Add a description for the file input field
+  })
+  image: any; // This will be handled by multer
+}
